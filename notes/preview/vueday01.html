@@ -1,0 +1,246 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>i5ting_ztree_toc:vueday01</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h2 id="vue-day01">vue day01</h2>
+<h3 id="vue-">vue 简介</h3>
+<ol>
+<li>简单易用, 上手快</li>
+<li>热度最高</li>
+</ol>
+<h4 id="-jquery-">对比jQuery的区别</h4>
+<ul>
+<li><p>以前使用jQuery结合模板引擎(art-template), 每一次进行页面渲染都需要将整个节点渲染, 而如果使用vue进行渲染, 只会将改变的内容渲染一次, 大大提高了用户体验!!!</p>
+</li>
+<li><p>jQuery只是一个JavaScript库, 对项目的侵入性较小, 开发过程中可以很轻易的切换成其他库或框架来继续开发</p>
+</li>
+<li><p>jQuery一直以来最强大的功能就是选择器和便捷的DOM操作, 处理了浏览器兼容性问题</p>
+</li>
+<li><p>Vue等MVVM思想设计的框架, 都有数据绑定的特点, 当Model层的数据更新, 会通过VM层自动同步刷新到View层, 从此程序员只需要关注业务逻辑, 而不需要操作DOM</p>
+</li>
+<li><p>Vue和Angular都提供了双向数据绑定, 除了可以从Model同步到View层, 还可以在View层数据发生变化时反向同步到Model层</p>
+</li>
+</ul>
+<h3 id="vue-">Vue的基本使用</h3>
+<ol>
+<li><p>引入vue.js文件</p>
+<pre><code> &lt;script src=&quot;./lib/vue.js&quot;&gt;&lt;/script&gt;
+</code></pre></li>
+<li><p>引入vue.js后, 全局作用域中就有一个 <code>Vue</code> 的构造函数, 通过此构造函数创建<code>Vue</code>实例</p>
+<p> 新创建出来的实例对象, 就是MVVM中的VM层</p>
+<pre><code> let vm = new Vue()
+</code></pre></li>
+<li><p>在VM实例创建时, 可以传入一个配置对象</p>
+<p> html结构:</p>
+<pre><code> ...
+ &lt;body&gt;
+     &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+ &lt;/body&gt;
+ ...
+</code></pre><p> js代码:</p>
+<pre><code> let vm = new Vue({
+     el: &#39;#app&#39;, // vm实例托管的区域
+     data: {
+         test: &#39;Hello Frontend 23!!!&#39;
+     }
+ })
+</code></pre></li>
+<li><p>当创建了VM实例后, 在VM实例托管的范围内, 就可以使用模板语法引用data中的数据(只要data中的数据修改了, 页面会自动同步)</p>
+<p> html结构:</p>
+<pre><code> &lt;div id=&quot;app&quot;&gt;
+     {{ test }}
+ &lt;/div&gt;
+</code></pre></li>
+</ol>
+<h3 id="vscode-vue-">VSCode编写Vue的插件</h3>
+<ol>
+<li>Vetur</li>
+<li>Vue 2 Snippets</li>
+</ol>
+<h3 id="vue-">Vue的指令</h3>
+<blockquote>
+<p>在Vue中, 只要是以 <code>v-</code> 开头的属性, 都是指令</p>
+</blockquote>
+<h4 id="v-cloak">v-cloak</h4>
+<p>为了解决Vue模板渲染时的闪烁问题</p>
+<p>闪烁:</p>
+<blockquote>
+<p>当标签内使用小胡子<code>{{}}</code>语法进行模板渲染时, 由于Vue文件在HTML结构之后才引入, 会导致<code>{{}}</code>模板代码在HTML中短暂停留, 然后再渲染成真正的数据, 用户体验不够好</p>
+</blockquote>
+<p>使用<code>v-cloak</code>指令结合CSS将元素默认隐藏起来, 当数据变化时进行渲染, 会自动显示, 无需手动干预</p>
+<p>其他解决方案: 不要在HTML后面引入vue文件, 应该在head区域引入</p>
+<h4 id="-">插值表达式</h4>
+<p>同<code>art-template</code>, 将data中的数据渲染到<code>{{}}</code>中, <code>{{}}</code> 内部写的是表达式(可以写js代码的地方)</p>
+<pre><code>{{ test }}
+</code></pre><p><strong>注意: 在Vue中插值表达式只能用于元素内部文本的渲染, 不能用于属性渲染</strong></p>
+<h4 id="v-text">v-text</h4>
+<p>将表达式的结果渲染到标签的 <code>innerText</code> 属性上</p>
+<p>后面的内容会拼接到test数据后面</p>
+<pre><code>&lt;p&gt;{{ test }}后面的内容&lt;/p&gt;
+</code></pre><p>后面的内容会被<strong>覆盖</strong>, 等同于 <code>p.innerText = test</code></p>
+<pre><code>&lt;p v-text=&quot;test&quot;&gt;后面的内容&lt;/p&gt;
+</code></pre><h4 id="v-html">v-html</h4>
+<p>用法同<code>v-text</code>, 区别在于 <code>v-html</code> 可以解析带HTML标签的结构, <code>v-text</code> 会将HTML解析成纯文本进行渲染</p>
+<pre><code>&lt;p v-html=&quot;test&quot;&gt;&lt;/p&gt;
+</code></pre><h4 id="v-bind">v-bind</h4>
+<p>Vue中提供用于属性绑定的指令</p>
+<pre><code>&lt;input v-bind:value=&quot;val + &#39;aaa&#39;&quot; type=&quot;text&quot;&gt;
+</code></pre><p>由于v-bind太长了, 所以Vue提供了简写 <code>:</code></p>
+<p>v-bind支持非标准属性的绑定</p>
+<pre><code>&lt;input :aaa=&quot;val&quot; :value=&quot;val + &#39;aaa&#39;&quot; type=&quot;text&quot;&gt;
+</code></pre><h3 id="v-on">v-on</h3>
+<p>Vue中提供用于事件绑定的指令</p>
+<pre><code>&lt;input id=&quot;inp&quot; :value=&quot;msg&quot; v-on:keyup=&quot;keydownHandler&quot; type=&quot;text&quot;&gt;
+</code></pre><p>data与methods的代码:</p>
+<pre><code>data: {
+    msg: &#39;你好啊!&#39;
+},
+methods: {
+    keydownHandler() {
+      // console.log(&#39;我被调用了!&#39;)
+      // console.log(document.querySelector(&#39;#inp&#39;).value)
+      this.msg = document.querySelector(&#39;#inp&#39;).value
+    }
+}
+</code></pre><p><strong>注意: 由于还没有学习到双向数据绑定的指令, 所以暂时操作了一下DOM, 后期实现该功能不需要操作DOM</strong></p>
+<p>v-on的简写: <code>@</code></p>
+<pre><code>&lt;input id=&quot;inp&quot; :value=&quot;msg&quot; @keyup=&quot;keydownHandler&quot; type=&quot;text&quot;&gt;
+</code></pre><h3 id="-">事件修饰符</h3>
+<p>Vue中为了方便开发人员处理一些简单的逻辑, 例如阻止冒泡或者阻止浏览器默认行为等操作</p>
+<p>特意提供了一系列事件修饰符完成:</p>
+<ol>
+<li><code>.stop</code></li>
+<li><code>.prevent</code></li>
+<li><code>.capture</code></li>
+<li><code>.self</code></li>
+<li><code>.once</code></li>
+<li><p><code>.passive</code></p>
+<pre><code> &lt;!-- 阻止单击事件继续传播 --&gt;
+ &lt;a v-on:click.stop=&quot;doThis&quot;&gt;&lt;/a&gt;
+
+ &lt;!-- 提交事件不再重载页面 --&gt;
+ &lt;form v-on:submit.prevent=&quot;onSubmit&quot;&gt;&lt;/form&gt;
+
+ &lt;!-- 修饰符可以串联 --&gt;
+ &lt;a v-on:click.stop.prevent=&quot;doThat&quot;&gt;&lt;/a&gt;
+
+ &lt;!-- 只有修饰符 --&gt;
+ &lt;form v-on:submit.prevent&gt;&lt;/form&gt;
+
+ &lt;!-- 添加事件监听器时使用事件捕获模式 --&gt;
+ &lt;!-- 即元素自身触发的事件先在此处理，然后才交由内部元素进行处理 --&gt;
+ &lt;div v-on:click.capture=&quot;doThis&quot;&gt;...&lt;/div&gt;
+
+ &lt;!-- 只当在 event.target 是当前元素自身时触发处理函数 --&gt;
+ &lt;!-- 即事件不是从内部元素触发的 --&gt;
+ &lt;div v-on:click.self=&quot;doThat&quot;&gt;...&lt;/div&gt;
+</code></pre></li>
+</ol>
+<h3 id="github-">github提交代码时报错解决方案</h3>
+<p>报错信息:</p>
+<blockquote>
+<p>permisstion denied</p>
+</blockquote>
+<blockquote>
+<p>access denied</p>
+</blockquote>
+<ol>
+<li><p>检查公钥是否配置正确</p>
+</li>
+<li><p>检查当前仓库关联的远端仓库是否使用的 <code>ssh</code> 协议</p>
+<p> 查看当前仓库的关联详细信息</p>
+<pre><code> git remote --verbose
+</code></pre><p> 将本地的仓库关联到远端的 <a href="mailto:git@github.com">git@github.com</a>:TianchengLee/test.git</p>
+<pre><code> git remote add origin git@github.com:TianchengLee/test.git
+</code></pre><p> 如果之前关联的是https, 非ssh, 可以删除</p>
+<p> 删除关联</p>
+<pre><code> git remote remove origin
+</code></pre><p> 重新添加</p>
+<pre><code> git remote add origin git@github.com:TianchengLee/test.git
+</code></pre></li>
+</ol>
+
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>
