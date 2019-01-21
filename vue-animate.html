@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用过度类名实现动画</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+    <style>
+        /* 需求：开始时距离X轴200px,缓慢移向0，再次点击的时候，使距离移动X轴300px */
+        .v-enter{
+            opacity: 0;
+            transform: translateY(200px);
+        }
+        .v-leave-to{
+            opacity: 0;
+            transform: translateX(300px);
+        }
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 2s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="toggle" @click = "flag = !flag" >
+        <!-- 使用transition将要移动的元素包裹起来 -->
+        <transition>
+            <h2 v-show = "flag">新年快乐呀！</h2>
+        </transition>
+    </div>
+    <script>
+        let vm  = new Vue({
+            el:"#app",
+            data:{
+                flag:false,
+            },
+            methods: {
+                
+            },
+
+        })
+    </script>
+</body>
+</html>
